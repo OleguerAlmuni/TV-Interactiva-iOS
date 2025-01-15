@@ -44,6 +44,12 @@ struct HomeView: View {
                                     ProgressView()
                                 }
                                 .frame(width: 100, height: 100)
+                            } else {
+                                Image(systemName: "photo")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100)
+                                    .foregroundColor(.gray)
                             }
                             VStack(alignment: .leading) {
                                 Text(item.title).font(.headline)
@@ -52,9 +58,9 @@ struct HomeView: View {
                         }
                     }
                 }
+
             }
             .navigationTitle("NASA Explorer")
         }
     }
 }
-

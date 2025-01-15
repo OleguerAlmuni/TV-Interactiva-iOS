@@ -16,8 +16,8 @@ struct DetailView: View {
 
                 Text(item.title).font(.title)
                 Text("Location: \(item.location ?? "Unknown")")
-                Text("Photographer: \(item.photographer ?? "Unknown")")
                 Text(item.description ?? "No description available.")
+                Text("Date Created: \(item.dateCreated)")
 
                 // Aquí puedes añadir la lógica para reproducir el video cuando implementes el fetch de detalles adicionales
             }

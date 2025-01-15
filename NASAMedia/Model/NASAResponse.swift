@@ -1,3 +1,7 @@
 struct NASAResponse: Decodable {
-    let items: [NASAItem]
+    let collection: Collection
+
+    struct Collection: Decodable {
+        let items: [NASAItemWrapper]
+    }
 }
