@@ -1,12 +1,14 @@
 import Foundation
 
 class NASAAPIService {
+    // Fetch response from NASA's API
     func fetchResults(query: String, yearStart: String, yearEnd: String, mediaType: String, completion: @escaping (Result<[NASAItem], Error>) -> Void) {
         let baseUrl = "https://images-api.nasa.gov/search"
         guard var urlComponents = URLComponents(string: baseUrl) else {
             return completion(.failure(URLError(.badURL)))
         }
 
+        // Queries for the API
         urlComponents.queryItems = [
             URLQueryItem(name: "q", value: query),
             URLQueryItem(name: "year_start", value: yearStart),
@@ -29,6 +31,7 @@ class NASAAPIService {
                 return
             }
 
+            // Decode the API's response
             do {
                 let decodedResponse = try JSONDecoder().decode(NASAResponse.self, from: data)
                 let items = decodedResponse.collection.items.compactMap { wrapper -> NASAItem? in
@@ -51,6 +54,7 @@ class NASAAPIService {
         }.resume()
     }
 
+    // Fetch the video of the article
     func fetchVideoURL(for eventID: String, completion: @escaping (Result<URL?, Error>) -> Void) {
             let urlString = "https://images-api.nasa.gov/asset/\(eventID)"
             guard let url = URL(string: urlString) else {
@@ -82,6 +86,7 @@ class NASAAPIService {
         }
 
     
+    // Structs to save the information of the video fetched
     struct NASAItemVideoResponse: Decodable {
         let collection: NASACollection
         

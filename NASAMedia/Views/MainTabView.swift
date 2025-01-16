@@ -4,7 +4,7 @@ struct MainTabView: View {
     var body: some View {
         TabView {
             HomeView()
-                .environmentObject(NASASearch()) // Optional if you want to share the search view model
+                .environmentObject(NASASearch())
                 .tabItem {
                     Label("Videos", systemImage: "video")
                 }

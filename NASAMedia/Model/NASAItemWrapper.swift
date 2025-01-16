@@ -12,21 +12,21 @@ struct NASAItemWrapper: Decodable {
         let photographer: String?
         let date_created: String
 
-        // Map JSON keys to Swift properties.
+        // Map JSON keys to Swift properties
         enum CodingKeys: String, CodingKey {
             case nasa_id
             case title
             case location
             case description
-            case photographer // Add photographer here
+            case photographer
             case date_created
         }
     }
 
     struct NASAItemLink: Decodable {
-        let href: String? // Raw URL string from API.
+        let href: String?
 
-        // Computed property to validate URL.
+        // Computed property to validate URL
         var url: URL? {
             guard let href = href else { return nil }
             return URL(string: href)

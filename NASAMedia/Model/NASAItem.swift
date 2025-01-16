@@ -7,9 +7,10 @@ struct NASAItem: Identifiable {
     let description: String?
     let photographer: String?
     let dateCreated: String
-    let previewImageString: String? // Store the raw string first.
+    let previewImageString: String?
 
-    var previewImage: URL? { // Compute the URL only when valid.
+    // Compute the URL when is valid
+    var previewImage: URL? {
         guard let urlString = previewImageString else { return nil }
         return URL(string: urlString)
     }

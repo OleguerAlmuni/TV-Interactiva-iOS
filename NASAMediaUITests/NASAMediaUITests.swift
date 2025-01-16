@@ -2,7 +2,7 @@
 //  NASAMediaUITests.swift
 //  NASAMediaUITests
 //
-//  Created by Roser Orra on 27/12/24.
+//  Created by Oleguer Almuni & Àlex Bayona on 27/12/24.
 //
 
 import XCTest

@@ -16,6 +16,7 @@ struct DetailView: View {
                     }
                 }
                 
+                // Article's information
                 Text(item.title).font(.title)
                 Text("Location: \(item.location ?? "Unknown")")
                 Text("Photographer: \(item.photographer ?? "Unknown")")
@@ -23,7 +24,7 @@ struct DetailView: View {
                 
                 if let videoURL = videoURL {
                     VideoPlayer(player: AVPlayer(url: videoURL))
-                        .frame(height: 300) // Adjust size as needed
+                        .frame(height: 300)
                 } else {
                     Text("Loading video...")
                         .onAppear {
@@ -36,6 +37,7 @@ struct DetailView: View {
         .navigationTitle("Detail")
     }
 
+    // Fetch article's video
     private func fetchVideo(for item: NASAItem) {
         NASAAPIService().fetchVideoURL(for: item.nasa_id) { result in
             switch result {

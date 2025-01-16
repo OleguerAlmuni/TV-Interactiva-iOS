@@ -11,6 +11,7 @@ struct HomeView: View {
         NavigationView {
             VStack {
                 Form {
+                    // Search bar
                     Section(header: Text("Search Parameters")) {
                         TextField("Keywords", text: $query)
                         TextField("Start Year", text: $yearStart)
