@@ -48,16 +48,6 @@
 			path = NASAMedia;
 			sourceTree = "<group>";
 		};
-		8BC844BF2D1F3A9F00D22D93 /* NASAMediaTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = NASAMediaTests;
-			sourceTree = "<group>";
-		};
-		8BC844C92D1F3A9F00D22D93 /* NASAMediaUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = NASAMediaUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				8BC844AD2D1F3A9D00D22D93 /* NASAMedia */,
-				8BC844BF2D1F3A9F00D22D93 /* NASAMediaTests */,
-				8BC844C92D1F3A9F00D22D93 /* NASAMediaUITests */,
 				8BC844AC2D1F3A9D00D22D93 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -143,9 +131,6 @@
 			dependencies = (
 				8BC844BE2D1F3A9F00D22D93 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				8BC844BF2D1F3A9F00D22D93 /* NASAMediaTests */,
-			);
 			name = NASAMediaTests;
 			packageProductDependencies = (
 			);
@@ -165,9 +150,6 @@
 			);
 			dependencies = (
 				8BC844C82D1F3A9F00D22D93 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				8BC844C92D1F3A9F00D22D93 /* NASAMediaUITests */,
 			);
 			name = NASAMediaUITests;
 			packageProductDependencies = (
