@@ -66,6 +66,7 @@ struct HomeView: View {
                     dismissButton: .default(Text("OK"))
                 )
             }
+            .background(Color(.systemBackground))
         }
     }
 }

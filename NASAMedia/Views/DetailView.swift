@@ -35,6 +35,7 @@ struct DetailView: View {
             .padding()
         }
         .navigationTitle("Detail")
+        .background(Color(.systemBackground))
     }
 
     // Fetch article's video
