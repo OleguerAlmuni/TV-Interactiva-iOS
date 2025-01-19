@@ -58,7 +58,7 @@ struct HomeView: View {
                     }
                 }
             }
-            .navigationTitle(mediaType.capitalized + " Explorer")
+            .navigationTitle("NASA " + mediaType.capitalized + " Explorer")
             .alert(isPresented: $showAlert) {
                 Alert(
                     title: Text("No Results Found"),
