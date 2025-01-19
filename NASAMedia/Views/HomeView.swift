@@ -6,6 +6,7 @@ struct HomeView: View {
     @State private var yearStart: String = "2020"
     @State private var yearEnd: String = "2024"
     let mediaType: String // Passed from MainTabView
+    @State private var showAlert = false // State to show/hide the alert
 
     var body: some View {
         NavigationView {
@@ -19,23 +20,18 @@ struct HomeView: View {
                     }
 
                     Button(action: {
-                        viewModel.search(query: query, yearStart: yearStart, yearEnd: yearEnd, mediaType: mediaType)
+                        viewModel.search(query: query, yearStart: yearStart, yearEnd: yearEnd, mediaType: mediaType) { success in
+                            if !success {
+                                showAlert = true // Show the alert if no results found
+                            }
+                        }
                     }) {
                         Text("Search")
                     }
                 }
 
-                // Display errors or no results message
-                if let errorMessage = viewModel.errorMessage {
-                    Text(errorMessage)
-                        .foregroundColor(.red)
-                        .padding()
-                } else if viewModel.noResultsFound {
-                    Text("No results found for \"\(query)\".")
-                        .foregroundColor(.gray)
-                        .padding()
-                } else {
-                    // Display results
+                // Display results
+                if !viewModel.noResultsFound {
                     List(viewModel.results) { item in
                         NavigationLink(destination: DetailView(item: item)) {
                             HStack {
@@ -62,7 +58,14 @@ struct HomeView: View {
                     }
                 }
             }
-            .navigationTitle("NASA " + mediaType.capitalized + " Explorer")
+            .navigationTitle(mediaType.capitalized + " Explorer")
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("No Results Found"),
+                    message: Text("The keyword \"\(query)\" did not return any results. Please try a different keyword."),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
         }
     }
 }

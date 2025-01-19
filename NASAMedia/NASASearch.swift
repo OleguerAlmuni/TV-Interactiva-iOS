@@ -1,28 +1,22 @@
 import Foundation
-import Combine
-
 class NASASearch: ObservableObject {
     @Published var results: [NASAItem] = []
-    @Published var errorMessage: String?
-    @Published var noResultsFound: Bool = false
+    @Published var noResultsFound = false
+    @Published var errorMessage: String? = nil
 
-    private var cancellables = Set<AnyCancellable>()
-
-    func search(query: String, yearStart: String, yearEnd: String, mediaType: String) {
-        errorMessage = nil
-        noResultsFound = false
-
+    func search(query: String, yearStart: String, yearEnd: String, mediaType: String, completion: @escaping (Bool) -> Void) {
         let apiService = NASAAPIService()
-        apiService.fetchResults(query: query, yearStart: yearStart, yearEnd: yearEnd, mediaType: mediaType) { [weak self] result in
+        apiService.fetchResults(query: query, yearStart: yearStart, yearEnd: yearEnd, mediaType: mediaType) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let items):
-                    if items.isEmpty {
-                        self?.noResultsFound = true
-                    }
-                    self?.results = items
+                    self.results = items
+                    self.noResultsFound = items.isEmpty
+                    completion(!items.isEmpty) // Notify if results are found
                 case .failure(let error):
-                    self?.errorMessage = "An error occurred: \(error.localizedDescription)"
+                    self.errorMessage = error.localizedDescription
+                    self.noResultsFound = true
+                    completion(false) // Notify failure
                 }
             }
         }
