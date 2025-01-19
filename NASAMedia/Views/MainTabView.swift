@@ -3,13 +3,15 @@ import SwiftUI
 struct MainTabView: View {
     var body: some View {
         TabView {
-            HomeView()
+            // Video Tab
+            HomeView(mediaType: "video")
                 .environmentObject(NASASearch())
                 .tabItem {
                     Label("Videos", systemImage: "video")
                 }
 
-            HomeView()
+            // Image Tab
+            HomeView(mediaType: "image")
                 .environmentObject(NASASearch())
                 .tabItem {
                     Label("Images", systemImage: "photo")
